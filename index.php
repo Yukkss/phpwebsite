@@ -1,8 +1,25 @@
 <?php 
-echo "Hello Nig!";
+
+session_start();
+ if (isset($_SESSION['login']) && isset($_SESSION['passwd'])) {
+    $login = $_SESSION['login'];
+    $passwd = $_SESSION['passwd'];
+	$typelogin = $_SESSION['type'];
+	if (isset($_SESSION['idclient'])){
+	$idclient = $_SESSION['idclient'];
+	}
+	
+ }
 
 ?>
 
+<?php
+require_once 'fonctionsConnexion.php'; 	// déclaration du fichier contenant des fonctions pouvant être appelées
+require_once 'fonctionsBDD.php'; // délaration du fichier contenant des fonctions liées à l'utilisation de la BDD pouvant  êre appelées
+
+$conn1=connexionBDD('paramCon.php'); 	// appel de la fonction connexionBDD. Le résultat retourné (un connecteur à la bdd) sera dans la variable $conn1
+// à partir d'ici, on est connecté à  la BDD acec le connecteur $conn1
+?>
 <!--Debut de html on cree le site pour le client  -->
 <html lang="fr"> 
 <head>
@@ -134,4 +151,8 @@ echo "Hello Nig!";
  
 
 </html>
+<?php 
 
+deconnexionBDD($conn1); // fermeture de connexion BDD 
+
+?> 
